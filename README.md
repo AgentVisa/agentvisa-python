@@ -4,7 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/agentvisa.svg)](https://badge.fury.io/py/agentvisa)
 [![Python Support](https://img.shields.io/pypi/pyversions/agentvisa.svg)](https://pypi.org/project/agentvisa/)
 
-The official Python SDK for the [AgentVisa API](https://agentvisa.dev). Simple, fast, and reliable.
+The official Python SDK for the [AgentVisa API](https://agentvisa.dev).
 
 ## Quick Start
 
