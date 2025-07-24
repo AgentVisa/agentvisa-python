@@ -45,7 +45,7 @@ clean: ## Clean build artifacts
 	find . -type f -name "*.pyc" -delete
 
 build: clean ## Build package
-	python -m build
+	uv build
 
 publish: build ## Publish to PyPI
 	twine upload dist/*
