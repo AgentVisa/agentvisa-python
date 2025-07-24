@@ -1,6 +1,6 @@
-# agentvisa-python
+# AgentVisa Python SDK
 
-[![Tests](https://github.com/your-org/agentvisa-python/workflows/Tests/badge.svg)](https://github.com/your-org/agentvisa-python/actions)
+[![Tests](https://github.com/AgentVisa/agentvisa-python/workflows/Tests/badge.svg)](https://github.com/AgentVisa/agentvisa-python/actions)
 [![PyPI version](https://badge.fury.io/py/agentvisa.svg)](https://badge.fury.io/py/agentvisa)
 [![Python Support](https://img.shields.io/pypi/pyversions/agentvisa.svg)](https://pypi.org/project/agentvisa/)
 
