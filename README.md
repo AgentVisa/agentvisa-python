@@ -263,10 +263,9 @@ make typecheck
 
 ## Support
 
-- [Documentation](https://docs.agentvisa.dev)
-- [API Reference](https://docs.agentvisa.dev/api)
-- [Issues](https://github.com/your-org/agentvisa-python/issues)
-- [Discord Community](https://discord.gg/agentvisa)
+- [Documentation](https://agentvisa.dev/docs)
+- [Issues](https://github.com/AgentVisa/agentvisa-python/issues)
+- [Discord Community](https://discord.gg/ZupkwFbvqC)
 
 ## License
 
