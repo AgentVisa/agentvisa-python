@@ -21,12 +21,6 @@ dev = [
     { name = "types-requests" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-    { name = "responses" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },
@@ -39,12 +33,6 @@ requires-dist = [
     { name = "types-requests", marker = "extra == 'dev'", specifier = ">=2.25.0" },
 ]
 provides-extras = ["dev"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pytest", specifier = ">=8.4.1" },
-    { name = "responses", specifier = ">=0.25.7" },
-]
 
 [[package]]
 name = "certifi"
