@@ -40,7 +40,7 @@ uv add agentvisa
 
 ## Authentication
 
-Get your API key from the [AgentVisa Dashboard](https://dashboard.agentvisa.dev).
+Get your API key from the [AgentVisa Dashboard](https://agentvisa.dev/dashboard).
 
 ```python
 import agentvisa
@@ -83,18 +83,6 @@ delegation = client.delegations.create(
     end_user_identifier="user123",
     scopes=["read", "write"],
     expires_in=3600
-)
-```
-
-### Custom Base URL
-
-```python
-from agentvisa import AgentVisaClient
-
-# For development or enterprise installations
-client = AgentVisaClient(
-    api_key="your-api-key",
-    base_url="https://your-instance.agentvisa.dev/v1"
 )
 ```
 
