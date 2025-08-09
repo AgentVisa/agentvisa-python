@@ -9,7 +9,7 @@ The official Python SDK for the [AgentVisa API](https://agentvisa.dev).
 ## Quick Start
 
 ```bash
-pip install agentvisa
+uv add agentvisa
 ```
 
 ```python
@@ -28,12 +28,6 @@ print(f"Credential: {delegation['credential'][:12]}... (agent_id={delegation['ag
 
 ## Installation
 
-### Using pip
-```bash
-pip install agentvisa
-```
-
-### Using uv
 ```bash
 uv add agentvisa
 ```
@@ -117,7 +111,7 @@ class SecureEmailTool(BaseTool):
                 end_user_identifier=user_id,
                 scopes=["send:email"]
             )
-            token = delegation.get('token')
+            token = delegation.get("credential")
             print(f"Successfully acquired AgentVisa for user '{user_id}' with scope 'send:email'")
         except Exception as e:
             return f"Error: Could not acquire AgentVisa. {e}"
@@ -148,7 +142,7 @@ from langchain.agents import initialize_agent, AgentType
 from langchain.chat_models import ChatOpenAI
 
 # Initialize your LLM
-llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+llm = ChatOpenAI(model_name="gpt-5-2025-08-07", temperature=0)
 
 # Create an instance of your secure tool
 tools = [SecureEmailTool()]
