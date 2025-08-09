@@ -18,12 +18,12 @@ import agentvisa
 # Initialize the SDK
 agentvisa.init(api_key="your-api-key")
 
-# Create a delegation
+# Create a delegation (type defaults to "ephemeral")
 delegation = agentvisa.create_delegation(
     end_user_identifier="user123",
-    scopes=["read", "write"]
+    scopes=["read", "write"],
 )
-print(f"Created delegation: {delegation['id']}")
+print(f"Credential: {delegation['credential'][:12]}... (agent_id={delegation['agent_id']})")
 ```
 
 ## Installation
@@ -64,7 +64,8 @@ agentvisa.init(api_key="your-api-key")
 delegation = agentvisa.create_delegation(
     end_user_identifier="user123",
     scopes=["read", "write", "admin"],
-    expires_in=7200  # 2 hours
+    expires_in=7200,  # 2 hours
+    metadata={"description": "Test agent"},
 )
 ```
 
@@ -116,7 +117,7 @@ class SecureEmailTool(BaseTool):
                 end_user_identifier=user_id,
                 scopes=["send:email"]
             )
-            token = delegation.get('token')
+            token = delegation.get("credential")
             print(f"Successfully acquired AgentVisa for user '{user_id}' with scope 'send:email'")
         except Exception as e:
             return f"Error: Could not acquire AgentVisa. {e}"
@@ -171,7 +172,7 @@ This pattern provides the perfect combination of LangChain's powerful reasoning 
 
 ### Delegations
 
-#### `create_delegation(end_user_identifier, scopes, expires_in=3600)`
+#### `create_delegation(end_user_identifier, scopes, expires_in=3600, *, delegation_type="ephemeral", metadata=None, timeout=15)`
 
 Create a new agent delegation.
 
@@ -181,7 +182,8 @@ Create a new agent delegation.
 - `expires_in` (int): Expiration time in seconds (default: 3600)
 
 **Returns:**
-Dict containing delegation details including `id`, `token`, and `expires_at`.
+Dict containing delegation details including `agent_id`, `credential`, and `expires_at`.
+For backward compatibility the dict also includes aliases: `id` mirrors `agent_id`, and `token` mirrors `credential`.
 
 **Example:**
 ```python
@@ -221,22 +223,11 @@ cd agentvisa-python
 make install
 ```
 
-### Testing
+### Check the code
+Run all checks (format, lint, typecheck, test)
 
 ```bash
-make test
-```
-
-### Linting
-
-```bash
-make lint
-```
-
-### Type Checking
-
-```bash
-make typecheck
+make check
 ```
 
 ## Contributing

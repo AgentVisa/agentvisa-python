@@ -43,6 +43,7 @@ class TestDelegationsAPI:
         import json
 
         payload = json.loads(request.body)
+        assert payload["type"] == "ephemeral"
         assert payload["end_user_identifier"] == "user123"
         assert payload["scopes"] == ["read", "write"]
         assert payload["expires_in"] == 3600
@@ -69,6 +70,7 @@ class TestDelegationsAPI:
         import json
 
         payload = json.loads(responses.calls[0].request.body)
+        assert payload["type"] == "ephemeral"
         assert payload["expires_in"] == 3600
 
     def test_create_delegation_without_end_user_identifier(self, client):
@@ -156,3 +158,30 @@ class TestDelegationsAPI:
 
         payload = json.loads(responses.calls[0].request.body)
         assert payload["expires_in"] == custom_expires_in
+
+    @responses.activate
+    def test_create_delegation_with_metadata_and_overrides(
+        self, client, sample_delegation_response
+    ):
+        """Test delegation creation with metadata and type/timeout overrides."""
+        responses.add(
+            responses.POST,
+            f"{client.base_url}/agents",
+            json=sample_delegation_response,
+            status=201,
+        )
+
+        metadata = {"description": "desc", "foo": 1}
+        _ = client.delegations.create(
+            end_user_identifier="user123",
+            scopes=["read"],
+            metadata=metadata,
+            delegation_type="ephemeral",
+            timeout=5,
+        )
+
+        import json
+
+        payload = json.loads(responses.calls[0].request.body)
+        assert payload["type"] == "ephemeral"
+        assert payload["metadata"] == metadata
