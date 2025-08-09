@@ -117,7 +117,7 @@ class SecureEmailTool(BaseTool):
                 end_user_identifier=user_id,
                 scopes=["send:email"]
             )
-            token = delegation.get("credential")
+            token = delegation.get('token')
             print(f"Successfully acquired AgentVisa for user '{user_id}' with scope 'send:email'")
         except Exception as e:
             return f"Error: Could not acquire AgentVisa. {e}"
