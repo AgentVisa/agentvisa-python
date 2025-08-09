@@ -19,7 +19,13 @@ def init(api_key: str) -> None:
 
 
 def create_delegation(
-    end_user_identifier: str, scopes: list[str], expires_in: int = 3600
+    end_user_identifier: str,
+    scopes: list[str],
+    expires_in: int = 3600,
+    *,
+    delegation_type: str = "ephemeral",
+    metadata: dict[str, Any] | None = None,
+    timeout: float | None = 30,
 ) -> dict[str, Any]:
     """Create a delegation using the global client.
 
@@ -27,6 +33,9 @@ def create_delegation(
         end_user_identifier: Unique identifier for the end user.
         scopes: List of permission scopes for the delegation.
         expires_in: Expiration time in seconds. Defaults to 3600 (1 hour).
+        delegation_type: Delegation type. Defaults to "ephemeral".
+        metadata: Optional metadata to attach to the delegation.
+        timeout: Optional timeout in seconds for the HTTP request. Defaults to 30s.
 
     Returns:
         Dict containing the API response with delegation details.
@@ -37,5 +46,10 @@ def create_delegation(
     if not default_client:
         raise Exception("Please call agentvisa.init(api_key='...') first.")
     return default_client.delegations.create(
-        end_user_identifier=end_user_identifier, scopes=scopes, expires_in=expires_in
+        end_user_identifier=end_user_identifier,
+        scopes=scopes,
+        expires_in=expires_in,
+        delegation_type=delegation_type,
+        metadata=metadata,
+        timeout=timeout,
     )

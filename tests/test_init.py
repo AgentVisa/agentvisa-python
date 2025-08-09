@@ -123,6 +123,7 @@ class TestInitModule:
         import json
 
         payload = json.loads(responses.calls[0].request.body)
+        assert payload["type"] == "ephemeral"
         assert payload["end_user_identifier"] == end_user_id
         assert payload["scopes"] == scopes
         assert payload["expires_in"] == expires_in
