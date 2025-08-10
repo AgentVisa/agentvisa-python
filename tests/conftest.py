@@ -35,11 +35,11 @@ def mock_responses():
 def sample_delegation_response():
     """Return a sample delegation API response."""
     return {
-        "id": "del_123456789",
-        "token": "av_tok_abcdef123456",
+        "agent_id": "del_123456789",
+        "credential": "av_tok_abcdef123456",
         "end_user_identifier": "user123",
         "scopes": ["read", "write"],
-        "expires_at": "2024-01-01T12:00:00Z",
+        "expires_at": "2025-01-01T12:00:00Z",
         "expires_in": 3600,
-        "created_at": "2024-01-01T11:00:00Z",
+        "created_at": "2025-01-01T11:00:00Z",
     }

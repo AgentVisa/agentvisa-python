@@ -28,6 +28,7 @@ class AgentVisaClient:
             {
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
+                "Accept": "application/json",
             }
         )
 

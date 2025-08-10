@@ -1,6 +1,6 @@
 [project]
 name = "agentvisa"
-version = "0.1.0"
+version = "0.1.1"
 description = "The official Python SDK for the AgentVisa API."
 readme = "README.md"
 authors = [
@@ -9,7 +9,8 @@ authors = [
 license = { text = "MIT" }
 requires-python = ">=3.13"
 dependencies = [
-    "requests>=2.25.0"
+    "requests>=2.25.0",
+    "pydantic>=2.5"
 ]
 keywords = ["agentvisa", "api", "sdk", "agent", "delegation"]
 classifiers = [
