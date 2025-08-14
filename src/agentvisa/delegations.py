@@ -5,7 +5,6 @@ from typing import Any
 import requests
 
 from .models import DelegationResponse, VerifyResponse
-from .models import DelegationResponse, VerifyResponse
 
 
 class DelegationsAPI:
