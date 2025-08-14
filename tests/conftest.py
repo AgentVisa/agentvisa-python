@@ -43,3 +43,24 @@ def sample_delegation_response():
         "expires_in": 3600,
         "created_at": "2025-01-01T11:00:00Z",
     }
+
+
+@pytest.fixture
+def sample_verify_response():
+    """Return a sample verify API response."""
+    return {
+        "valid": True,
+        "agent_id": "del_123456789",
+        "end_user_identifier": "user123",
+        "scopes": ["read", "write"],
+        "expires_at": "2025-01-01T12:00:00Z",
+        "metadata": {"description": "Test agent"},
+    }
+
+
+@pytest.fixture
+def sample_invalid_verify_response():
+    """Return a sample invalid verify API response."""
+    return {
+        "valid": False,
+    }

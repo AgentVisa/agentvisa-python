@@ -53,3 +53,28 @@ def create_delegation(
         metadata=metadata,
         timeout=timeout,
     )
+
+
+def verify_delegation(
+    credential: str,
+    *,
+    timeout: float | None = 30,
+) -> dict[str, Any]:
+    """Verify a delegated credential using the global client.
+
+    Args:
+        credential: The credential token to verify.
+        timeout: Optional timeout in seconds for the HTTP request. Defaults to 30s.
+
+    Returns:
+        Dict containing the API response with verification details.
+
+    Raises:
+        Exception: If init() has not been called first.
+    """
+    if not default_client:
+        raise Exception("Please call agentvisa.init(api_key='...') first.")
+    return default_client.delegations.verify(
+        credential=credential,
+        timeout=timeout,
+    )
