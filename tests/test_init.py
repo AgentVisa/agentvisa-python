@@ -155,7 +155,9 @@ class TestInitModule:
         assert payload["credential"] == credential
 
     @responses.activate
-    def test_verify_delegation_with_custom_timeout(self, api_key, sample_verify_response):
+    def test_verify_delegation_with_custom_timeout(
+        self, api_key, sample_verify_response
+    ):
         """Test delegation verification with custom timeout."""
         agentvisa.init(api_key=api_key)
 

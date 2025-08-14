@@ -214,7 +214,9 @@ class TestDelegationsAPI:
         assert payload["credential"] == credential
 
     @responses.activate
-    def test_verify_delegation_invalid_token(self, client, sample_invalid_verify_response):
+    def test_verify_delegation_invalid_token(
+        self, client, sample_invalid_verify_response
+    ):
         """Test verification of invalid delegation."""
         responses.add(
             responses.POST,
@@ -272,7 +274,9 @@ class TestDelegationsAPI:
             client.delegations.verify(credential="av_tok_abcdef123456")
 
     @responses.activate
-    def test_verify_delegation_with_custom_timeout(self, client, sample_verify_response):
+    def test_verify_delegation_with_custom_timeout(
+        self, client, sample_verify_response
+    ):
         """Test delegation verification with custom timeout."""
         responses.add(
             responses.POST,
