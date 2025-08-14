@@ -89,7 +89,7 @@ class DelegationsAPI:
         if not credential:
             raise ValueError("credential is required.")
 
-        url = f"{self.base_url}/agents/verify"
+        url = f"{self.base_url}/verify"
         payload: dict[str, Any] = {
             "credential": credential,
         }

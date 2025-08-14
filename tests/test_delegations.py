@@ -192,7 +192,7 @@ class TestDelegationsAPI:
         # Mock the API response
         responses.add(
             responses.POST,
-            f"{client.base_url}/agents/verify",
+            f"{client.base_url}/verify",
             json=sample_verify_response,
             status=200,
         )
@@ -205,7 +205,7 @@ class TestDelegationsAPI:
 
         # Verify request details
         request = responses.calls[0].request
-        assert request.url == f"{client.base_url}/agents/verify"
+        assert request.url == f"{client.base_url}/verify"
 
         # Check request payload
         import json
@@ -220,7 +220,7 @@ class TestDelegationsAPI:
         """Test verification of invalid delegation."""
         responses.add(
             responses.POST,
-            f"{client.base_url}/agents/verify",
+            f"{client.base_url}/verify",
             json=sample_invalid_verify_response,
             status=200,
         )
@@ -252,7 +252,7 @@ class TestDelegationsAPI:
         """Test delegation verification handles HTTP errors."""
         responses.add(
             responses.POST,
-            f"{client.base_url}/agents/verify",
+            f"{client.base_url}/verify",
             json={"error": "Unauthorized"},
             status=401,
         )
@@ -265,7 +265,7 @@ class TestDelegationsAPI:
         """Test delegation verification handles server errors."""
         responses.add(
             responses.POST,
-            f"{client.base_url}/agents/verify",
+            f"{client.base_url}/verify",
             json={"error": "Internal server error"},
             status=500,
         )
@@ -280,7 +280,7 @@ class TestDelegationsAPI:
         """Test delegation verification with custom timeout."""
         responses.add(
             responses.POST,
-            f"{client.base_url}/agents/verify",
+            f"{client.base_url}/verify",
             json=sample_verify_response,
             status=200,
         )
