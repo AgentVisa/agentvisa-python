@@ -27,3 +27,16 @@ class DelegationResponse(BaseModel):
     metadata: dict[str, Any] | None = None
 
     model_config = ConfigDict(extra="ignore")
+
+
+class VerifyResponse(BaseModel):
+    """Validated response for a credential verification request."""
+
+    valid: bool
+    agent_id: str | None = None
+    expires_at: str | None = None
+    end_user_identifier: str | None = None
+    scopes: list[str] | None = None
+    metadata: dict[str, Any] | None = None
+
+    model_config = ConfigDict(extra="ignore")

@@ -4,7 +4,7 @@ from typing import Any
 
 import requests
 
-from .models import DelegationResponse
+from .models import DelegationResponse, VerifyResponse
 
 
 class DelegationsAPI:
@@ -65,4 +65,38 @@ class DelegationsAPI:
         data: dict[str, Any] = response.json()
         # Will raise ValidationError if unexpected structure is returned
         DelegationResponse.model_validate(data)
+        return data
+
+    def verify(
+        self,
+        credential: str,
+        *,
+        timeout: float | None = 30,
+    ) -> dict[str, Any]:
+        """Verify a delegated credential.
+
+        Args:
+            credential: The credential token to verify.
+            timeout: Optional timeout in seconds for the HTTP request. Defaults to 30s.
+
+        Returns:
+            Dict containing the API response with verification details.
+
+        Raises:
+            ValueError: If credential is not provided.
+            requests.HTTPError: If the API request fails.
+        """
+        if not credential:
+            raise ValueError("credential is required.")
+
+        url = f"{self.base_url}/agents/verify"
+        payload: dict[str, Any] = {
+            "credential": credential,
+        }
+
+        response = self.session.post(url, json=payload, timeout=timeout)
+        response.raise_for_status()  # Raises an exception for bad status codes
+        data: dict[str, Any] = response.json()
+        # Will raise ValidationError if unexpected structure is returned
+        VerifyResponse.model_validate(data)
         return data
