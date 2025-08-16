@@ -137,7 +137,7 @@ class TestInitModule:
         # Mock the API response
         responses.add(
             responses.POST,
-            f"{agentvisa.default_client.base_url}/agents/verify",
+            f"{agentvisa.default_client.base_url}/verify",
             json=sample_verify_response,
             status=200,
         )
@@ -163,7 +163,7 @@ class TestInitModule:
 
         responses.add(
             responses.POST,
-            f"{agentvisa.default_client.base_url}/agents/verify",
+            f"{agentvisa.default_client.base_url}/verify",
             json=sample_verify_response,
             status=200,
         )

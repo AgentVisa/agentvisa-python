@@ -47,9 +47,6 @@ clean: ## Clean build artifacts
 build: clean ## Build package
 	uv build
 
-publish: build ## Publish to PyPI
-	twine upload dist/*
-
 dev-setup: install-dev ## Full development setup
 	@echo "✅ Development environment ready!"
 	@echo "Run 'make test' to verify everything works"
