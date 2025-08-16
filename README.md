@@ -61,6 +61,12 @@ delegation = agentvisa.create_delegation(
     expires_in=7200,  # 2 hours
     metadata={"description": "Test agent"},
 )
+
+# Verify delegations
+verification = agentvisa.verify_delegation(
+    credential=delegation["credential"]
+)
+print(f"Valid: {verification['valid']}, Agent ID: {verification['agent_id']}")
 ```
 
 ### Client Interface
@@ -78,6 +84,11 @@ delegation = client.delegations.create(
     end_user_identifier="user123",
     scopes=["read", "write"],
     expires_in=3600
+)
+
+# Verify delegations
+verification = client.delegations.verify(
+    credential=delegation["credential"]
 )
 ```
 
@@ -186,6 +197,27 @@ delegation = agentvisa.create_delegation(
     scopes=["read", "write"],
     expires_in=7200
 )
+```
+
+#### `verify_delegation(credential, *, timeout=30)`
+
+Verify an existing agent delegation credential.
+
+**Parameters:**
+- `credential` (str): The credential token to verify
+
+**Returns:**
+Dict containing verification details including `valid`, `agent_id`, `scopes`, and `expires_at`.
+
+**Example:**
+```python
+verification = agentvisa.verify_delegation(
+    credential="eyJhbGciOiJSUzI1NiIsImtpZC..."
+)
+print(f"Valid: {verification['valid']}")
+if verification['valid']:
+    print(f"Agent ID: {verification['agent_id']}")
+    print(f"Scopes: {verification['scopes']}")
 ```
 
 ## Error Handling
